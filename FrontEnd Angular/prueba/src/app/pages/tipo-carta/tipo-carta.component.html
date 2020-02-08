@@ -1,0 +1,40 @@
+
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body" *ngIf="tipoCatas.length > 0">
+        <h5 class="card-title">
+          Cual Carta ?
+        </h5>
+
+        <table class="table table-hover" >
+          <thead>
+            <th></th>
+            <th></th>
+            <th></th>
+
+          </thead>
+          <tbody>
+            <tr *ngFor = "let tipoCata of tipoCatas">
+
+              <td> {{ tipoCata.nombre }} </td>
+              <td>
+                <label class="label label-danger">Visualizar</label>
+              </td>
+
+              <td>
+                <button (click)="generarPdf(tipoCata)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
