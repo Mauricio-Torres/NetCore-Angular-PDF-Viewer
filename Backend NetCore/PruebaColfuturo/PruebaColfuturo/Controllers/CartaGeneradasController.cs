@@ -40,6 +40,31 @@ namespace PruebaColfuturo.Controllers
         }
 
         [HttpGet]
+        [Route("/getCarta")]
+        public byte[] GetCarta(int id)
+        {
+            var dat = _context.CartaGenerada.FirstOrDefault(carta => carta.Id == id);
+
+            if (dat != null)
+            {
+
+                if (System.IO.File.Exists(dat.urlPdf))
+                {
+                    byte[] bytes = System.IO.File.ReadAllBytes(dat.urlPdf);
+                    return bytes;
+                }
+                else
+                {
+                    return null;
+                }
+             
+            }
+
+            return null;
+            
+        }
+
+        [HttpGet]
         [Route("/cartasGeneradas")]
 
         public List<CartaGenerada> GetCartasGeneradas(string select)

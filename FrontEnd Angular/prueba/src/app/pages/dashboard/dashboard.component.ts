@@ -22,7 +22,7 @@ export class DashboardComponent implements OnInit {
   idioma: any[] = []
   tipoCartas: any[] = []
   selectOption: any;
-
+  mostrarPersonalizacion = false;
 
   constructor(private idiomasService: IdiomasService,
     private tipoCartaService: TipoCartaService,
@@ -56,6 +56,7 @@ export class DashboardComponent implements OnInit {
 
     if (op.value === 1) {
 
+      this.mostrarPersonalizacion = false;
       this.carta.nombre = null;
       this.carta.apellido = null;
       this.carta.titulo = null;
@@ -64,8 +65,23 @@ export class DashboardComponent implements OnInit {
       this.carta.direccion = null;
       this.carta.ciudad = null;
       this.carta.pais = null;
+    } else {
+      this.mostrarPersonalizacion = true;
+
     }
 
+
+  }
+
+  creacionCarta(carta: Carta) {
+    this.carta.nombre = carta.nombre;
+    this.carta.apellido = carta.apellido;
+    this.carta.titulo = carta.titulo;
+    this.carta.cargo = carta.cargo;
+    this.carta.organizacion = carta.organizacion;
+    this.carta.direccion = carta.direccion;
+    this.carta.ciudad = carta.ciudad;
+    this.carta.pais = carta.pais;
   }
 
   generarCart(data: any) {

@@ -1,3 +1,3 @@
 export interface DialogData {
-  url: string;
+  url: any;
 }

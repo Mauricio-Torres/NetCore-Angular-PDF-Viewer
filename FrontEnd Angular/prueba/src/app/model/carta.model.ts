@@ -1,6 +1,7 @@
 export class Carta  {
 
   constructor(
+    public id: any= 0,
     public nombre: string = '',
     public apellido: string = '',
     public titulo: string = '',

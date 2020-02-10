@@ -26,8 +26,8 @@ export class CartasGeneradasComponent implements OnInit, OnDestroy {
   openDialog(carta: Carta): void {
 
     const dialogRef = this.dialog.open(ModalComponent, {
-      width: '250px',
-      data: {url: carta.urlPdf }
+      width: '800px',
+      data: {url: carta.id }
     });
 
     dialogRef.afterClosed().subscribe(result => {

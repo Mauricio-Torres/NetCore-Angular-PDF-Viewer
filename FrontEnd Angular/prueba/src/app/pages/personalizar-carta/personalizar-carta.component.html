@@ -1,1 +1,46 @@
-<p>personalizar-carta works!</p>
+
+
+
+<form [formGroup]="formGroup">
+  <label for="exampleInputEmail1">Titulo</label>
+  <br>
+  <div class="form-group">
+    <mat-radio-group class="example-radio-group" formControlName="titulo">
+      <mat-radio-button  class="example-radio-button" *ngFor="let op of tipoOperaciones" (change)="optionSlect()" [value]="op">
+        {{op}}
+      </mat-radio-button>
+   </mat-radio-group>
+
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Nombre</label>
+    <input formControlName="nombre" (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Apellidos</label>
+    <input formControlName="apellido" (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Cargo</label>
+    <input formControlName="cargo" (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Organizacion</label>
+    <input formControlName="organizacion" (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Ciudad</label>
+    <input formControlName="ciudad" (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputEmail1">Pais</label>
+    <input formControlName="pais"  (change)="optionSlect()" type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+  </div>
+
+</form>

@@ -1,3 +1,5 @@
+import { PdfViewerModule } from 'ng2-pdf-viewer';
+
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
@@ -17,7 +19,8 @@ import { ModalComponent } from './modal/modal.component';
     FormsModule,
     PagesRoutes,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    PdfViewerModule
   ],
   declarations: [
     TipoCartaComponent,

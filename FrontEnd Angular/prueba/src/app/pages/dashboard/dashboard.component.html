@@ -22,10 +22,10 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-
-          <app-idioma  [idioma] = "idioma" ></app-idioma>
-
-
+          <app-personalizar-carta *ngIf="mostrarPersonalizacion" (usuarioRemito) = "creacionCarta($event)">
+          </app-personalizar-carta>
+          <app-idioma  [idioma] = "idioma" >
+          </app-idioma>
         </div>
       </div>
     </div>

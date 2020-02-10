@@ -20,4 +20,15 @@ getCartas(carta: any) {
   return this.http.get(url).pipe(map( (resp: any) => { return resp; }));
 
 }
+
+
+getCarta (dat){
+  const url = URL_SERVICE + '/getCarta?id=' + dat;
+
+    console.log(url)
+
+    return this.http.get(url).pipe(map( (data: any) => {
+      return data;
+   }));
+}
 }
