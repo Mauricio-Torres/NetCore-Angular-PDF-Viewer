@@ -9,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using PruebaColfuturo.DataBase;
 using PruebaColfuturo.Model;
 using PruebaColfuturo.Utils;
@@ -37,22 +39,33 @@ namespace PruebaColfuturo.Controllers
             return await _context.CartaGenerada.ToListAsync();
         }
 
-        [HttpPost]
-        public List<CartaGenerada> GetCartasGeneradas(InputConsultarCarta selectCarta)
-        {
-            var query = (from cg in _context.CartaGenerada
-                         join i in _context.Idioma on cg.Idiomas.Id equals i.Id
-                         join tc in _context.TipoCarta on i.Id equals tc.Idiomas.Id
-                         where cg.Idiomas.Id == selectCarta.IdIdioma && tc.Id == selectCarta.IdTipo
-                         select cg).ToList();
+        [HttpGet]
+        [Route("/cartasGeneradas")]
 
-            return query;
+        public List<CartaGenerada> GetCartasGeneradas(string select)
+        {
+
+            var selectCarta = JsonConvert.DeserializeObject<InputConsultarCarta>(select);
+
+            if (selectCarta.IdIdioma > 0 || selectCarta.IdTipo > 0)
+            {
+                return (from cg in _context.CartaGenerada
+                             join i in _context.Idioma on cg.Idiomas.Id equals i.Id
+                             join tc in _context.TipoCarta on i.Id equals tc.Idiomas.Id
+                             where cg.Idiomas.Id == selectCarta.IdIdioma && tc.Id == selectCarta.IdTipo
+                             select cg).ToList();
+            } else {
+                
+                return _context.CartaGenerada.ToList();
+            }            
         }
 
-        [HttpPost]
+        [HttpGet]
         [Route("/generarPdf")]
-        public bool CreateCarta(InputGenerateCarta inputGenerateCarta)
+        public bool CreateCarta(string inputDate)
         {
+            var inputGenerateCarta = JsonConvert.DeserializeObject<InputGenerateCarta>(inputDate);
+
             try
             {
                 var query = (from i in _context.Idioma

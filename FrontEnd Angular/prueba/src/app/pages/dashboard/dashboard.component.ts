@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { IdiomasService, TipoCartaService } from 'src/app/services/service.index';
+import { Component, OnInit, EventEmitter } from '@angular/core';
+import { IdiomasService, TipoCartaService, CartasGeneradasService } from 'src/app/services/service.index';
 import { Carta } from '../../model/carta.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-dashboard',
@@ -15,7 +16,7 @@ export class DashboardComponent implements OnInit {
   ];
 
 
-  carta: Carta;
+  carta: Carta = new Carta();
 
   cargando = false;
   idioma: any[] = []
@@ -23,10 +24,14 @@ export class DashboardComponent implements OnInit {
   selectOption: any;
 
 
-  constructor(private idiomasService: IdiomasService, private tipoCartaService: TipoCartaService) {
+  constructor(private idiomasService: IdiomasService,
+    private tipoCartaService: TipoCartaService,
+    private router: Router ,
+    private artasGeneradasService: CartasGeneradasService) {
+
     this.operacionSeleccionada = this.tipoOperaciones[0];
-    // tslint:disable-next-line: new-parens
-    this.carta = new Carta;
+    this.artasGeneradasService.hacerCOnsulta = true;
+    this.artasGeneradasService.cartasGeneradas = [];
   }
 
   ngOnInit() {
@@ -35,8 +40,8 @@ export class DashboardComponent implements OnInit {
 
     this.idiomasService.changeIdioma.subscribe((dat) => {
 
-      this.carta.idTipo = null;
       this.carta.idIdiomas = dat.id;
+      this.carta.idTipo = null;
 
       this.cargando = true;
       this.idiomasService.cargarTipoCartas(dat.id).subscribe((tipoCartas => {
@@ -45,11 +50,6 @@ export class DashboardComponent implements OnInit {
       }));
     });
 
-    this.tipoCartaService.selectTipoCarta.subscribe((dat: any) => {
-
-      this.carta.idTipo = dat.id;
-      this.tipoCartaService.crearTipoCartas(this.carta)
-    });
   }
 
   optionSlect(op: any){
@@ -66,6 +66,27 @@ export class DashboardComponent implements OnInit {
       this.carta.pais = null;
     }
 
+  }
+
+  generarCart(data: any) {
+    this.carta.idTipo = data.id;
+    this.tipoCartaService.crearTipoCartas(this.carta).subscribe( data => {
+      console.log(data);
+    });
+  }
+
+  verListPdf(data: any) {
+
+    let obj = { idIdioma: this.carta.idIdiomas, idTipo:  data.id };
+
+
+    this.artasGeneradasService.getCartas( obj).subscribe( ( data: any) => {
+      this.artasGeneradasService.cartasGeneradas = data;
+      this.artasGeneradasService.hacerCOnsulta = !this.artasGeneradasService.cartasGeneradas;
+      if (data) {
+        this.router.navigate(['/cartasGeneradas']);
+      }
+    });
   }
 
 }

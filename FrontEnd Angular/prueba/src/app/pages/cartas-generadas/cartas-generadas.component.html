@@ -1,1 +1,73 @@
-<p>cartas-generadas works!</p>
+
+
+	<div class="col-12">
+    <div class="card">
+      <div class="card-body">
+          <h3 class="card-title text-left"> Cartas Creadas </h3>
+
+          <table class="table table-hover" >
+              <thead>
+                <th>NOMBRE CARTA</th>
+                <th>RECIBE </th>
+                <th>ORGANIZADOR</th>
+                <th>PAIS - CIUDAD</th>
+                <th>VER PDF</th>
+              </thead>
+              <tbody>
+                <tr *ngFor = "let item of cartasGeneradas">
+                  <td>
+                    {{ item.namePdf }}
+                  </td>
+                  <td>
+                    {{ item.nombre +' '+ item.apellido}}
+                  </td>
+                  <td>
+                    {{ item.organizacion }}
+                  </td>
+                  <td>
+                    {{ item.pais +' - '+ item.ciudad }}
+                  </td>
+                   <td>
+                    <button mat-raised-button class="btn btn-prymary" (click)="openDialog(item)">Abrir PDF</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--
+
+<div>
+  <ol>
+    <li>
+      <mat-form-field>
+        <input matInput [(ngModel)]="name" placeholder="What's your name?">
+      </mat-form-field>
+    </li>
+    <li>
+      <button mat-raised-button (click)="openDialog(item)">Abrir PDF</button>
+    </li>
+    <br />
+    <li *ngIf="animal">
+      You chose: <p style="font-weight: bold">{{animal}}</p>
+    </li>
+  </ol>
+</div>
+-->

@@ -16,19 +16,17 @@
           </thead>
           <tbody>
             <tr *ngFor = "let tipoCata of tipoCatas">
-
               <td> {{ tipoCata.nombre }} </td>
               <td>
-                <label class="label label-danger">Visualizar</label>
-              </td>
+                <button (click)="verPdf(tipoCata)" class="btn btn-primary"><i class="fa fa-file-text-o"></i></button>
 
+              </td>
               <td>
-                <button (click)="generarPdf(tipoCata)" class="btn btn-danger"><i class="fa fa-trash-o"></i></button>
+                <button (click)="generarPdf(tipoCata)" class="btn btn-link"><i class="fa fa-download"></i></button>
               </td>
             </tr>
           </tbody>
         </table>
-
 
       </div>
     </div>

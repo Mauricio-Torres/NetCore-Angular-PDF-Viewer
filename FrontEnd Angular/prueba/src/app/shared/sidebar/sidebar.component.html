@@ -4,14 +4,14 @@
               <nav class="sidebar-nav">
                   <ul id="sidebarnav">
                       <li class="user-profile">
-                          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                          <a class="has-arrow waves-effect waves-dark" style="color: blueviolet;" href="#" aria-expanded="false">
                             <span class="hide-menu">{{ usuario.nombre }} </span>
                           </a>
                       </li>
                       <li class="nav-devider"></li>
                       <li class="nav-small-cap"> Acciones </li>
                       <li *ngFor="let menu of _sideBarService.menu">
-                        <a [routerLink]="[menu.path]" routerLinkActive="active" class="has-arrow waves-effect waves-dark" aria-expanded="false"><i [class]="menu.icono"></i>
+                        <a [routerLink]="[menu.path]" style="color: blueviolet;" routerLinkActive="active" class="has-arrow waves-effect waves-dark" aria-expanded="false"><i style="color:red;" [class]="menu.icono"></i>
                           <span class="hide-menu">{{ menu.titulo}}
 
                         </span>

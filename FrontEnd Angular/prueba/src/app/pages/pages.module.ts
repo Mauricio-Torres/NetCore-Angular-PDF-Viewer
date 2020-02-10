@@ -8,22 +8,28 @@ import { IdiomaComponent } from './idioma/idioma.component';
 import { PersonalizarCartaComponent } from './personalizar-carta/personalizar-carta.component';
 import { PagesRoutes } from './pages.routing';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { MatRadioModule } from '@angular/material/radio';
+import { MaterialModule } from '../material/material.module';
+import { ModalComponent } from './modal/modal.component';
 @NgModule({
   imports: [
     CommonModule,
     SharedModule,
     FormsModule,
     PagesRoutes,
-    MatRadioModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   declarations: [
     TipoCartaComponent,
     DashboardComponent,
     CartasGeneradasComponent,
     IdiomaComponent,
-    PersonalizarCartaComponent
+    PersonalizarCartaComponent,
+    ModalComponent
+  ],
+  entryComponents: [
+    ModalComponent
   ]
+
 })
 export class PagesModule { }
